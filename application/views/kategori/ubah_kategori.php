@@ -25,27 +25,26 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Tambah Kategori</h5>
+              <h5 class="card-title">Ubah Kategori</h5>
+
               <p class="card-text">
                 <form method="post">
                   <div class="mb-3">
                     <label for="nama_kategori" class="form-label">Nama Kategori</label>
-                    <input type="text" class="form-control" name="nama_kategori" id="nama_kategori" aria-describedby="Nama Kategori">
+                    <input type="text" class="form-control" name="nama_kategori" id="nama_kategori" value="<?= $kategori['nama'] ?>" aria-describedby="Nama Kategori">
                   </div>
                   <div class="mb-3">
                     <label for="deskripsi_kategori" class="form-label">Deskripsi</label>
-                    <textarea name="deskripsi_kategori" id="deskripsi_kategori" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="deskripsi_kategori" id="deskripsi_kategori" cols="30" rows="10" class="form-control"><?= $kategori['deskripsi'] ?></textarea>
                   </div>
-                  <button type="submit" class="btn btn-primary">Tambah</button>
+                  <button type="submit" class="btn btn-primary">Ubah</button>
                   <a href="<?= base_url('admin/kategori') ?>" class="btn btn-danger">Kembali</a>
                 </form>
               </p>
             </div>
           </div>
-
         </div>
         <!-- /.col-md-6 -->
-
       </div>
       <!-- /.row -->
     </div><!-- /.container-fluid -->
