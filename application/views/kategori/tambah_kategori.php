@@ -25,7 +25,7 @@
         <div class="col-lg-12">
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Tambah Kategori</h5>
+                <h5 class="card-title">Tambah Kategori</h5>
               <p class="card-text">
                 <form method="post">
                   <div class="mb-3">
@@ -37,13 +37,17 @@
                     <textarea name="deskripsi_kategori" id="deskripsi_kategori" cols="30" rows="10" class="form-control"></textarea>
                   </div>
                   <button type="submit" class="btn btn-primary">Tambah</button>
-                  <a href="<?= base_url('administrator/kategori') ?>" class="btn btn-danger">Kembali</a>
+                  <a href="<?= base_url('admin/kategori') ?>" class="btn btn-danger">Kembali</a>
                 </form>
               </p>
             </div>
           </div>
-        </div><!-- /.col-lg-12 -->
-      </div><!-- /.row -->
+
+        </div>
+        <!-- /.col-md-6 -->
+
+      </div>
+      <!-- /.row -->
     </div><!-- /.container-fluid -->
   </div>
   <!-- /.content -->

@@ -1,22 +1,26 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Admin_auth_controller extends CI_Controller
 {
-
     public function __construct()
     {
         parent::__construct();
-        // Load model
         $this->load->model('Administrator_model');
     }
 
     public function index()
     {
-        $data['title'] = 'Delphi Pet Shop';
+        
+        if ($this->session->userdata('admin_login')) {
+            redirect('admin');
+        }
 
-        $this->form_validation->set_rules('inputUsername', 'Username', 'required');
+        $data['title'] = 'Klinik Dokter Depun';
+
+        $this->form_validation->set_rules('inputUsername', 'Username', 'required|trim');
         $this->form_validation->set_rules('inputPassword', 'Password', 'required');
+
         if ($this->form_validation->run() !== FALSE) {
             $this->_login();
         } else {
@@ -26,40 +30,37 @@ class Admin_auth_controller extends CI_Controller
 
     private function _login()
     {
-        $username = $this->input->post('inputUsername');
+        $username = $this->input->post('inputUsername', TRUE);
         $password = $this->input->post('inputPassword');
-        
-        $check = $this->Administrator_model->check_login($username, md5($password));
-        
+
+        $check = $this->Administrator_model->check_login($username, $password);
+
         if ($check) {
-            $session_data = array(
+            $this->session->sess_regenerate(TRUE);
+            $this->session->set_userdata([
                 'id'          => $check['id_admin'],
                 'username'    => $check['username'],
                 'full_name'   => $check['full_name'],
                 'admin_login' => TRUE
-            );
-            $this->session->set_userdata($session_data);
+            ]);
             redirect('admin');
         } else {
             $this->session->set_flashdata('message', '
-            <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
-                <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:">
-                    <use xlink:href="#exclamation-triangle-fill" />
-                </svg>
-                <div>
-                    Username dan password salah!!
-                </div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            ');
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                Username atau password salah!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>');
             redirect('admin/login');
         }
     }
 
     public function logout()
     {
-        $session_data = array('id', 'username', 'full_name', 'admin_login');
-        $this->session->unset_userdata($session_data);
+        $this->session->unset_userdata(['id', 'username', 'full_name', 'admin_login']);
         redirect('admin/login');
     }
 }
+
+

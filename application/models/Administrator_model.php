@@ -1,14 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Administrator_model extends CI_Model {
-
-    private $_table = 'administrator';
-
+class Administrator_model extends CI_Model
+{
+    
     public function check_login($username, $password)
     {
-        $this->db->where('username', $username);
-        $this->db->where('password', $password);
-            return $this->db->get($this->_table)->row_array();
+        $admin = $this->db
+            ->get_where('administrator', ['username' => $username])
+            ->row_array();
+
+        if ($admin && $admin['password'] === md5($password)) {
+            return $admin;
+        }
+        return FALSE;
     }
 }
