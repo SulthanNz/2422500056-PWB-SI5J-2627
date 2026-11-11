@@ -77,7 +77,7 @@
                                                         data-preview="preview-<?= $gambar['id_gambar'] ?>">
                                                     <button type="button" class="btn btn-warning btn-ganti-gambar" data-target="ganti-<?= $gambar['id_gambar'] ?>">Ganti</button>
                                                     <small class="text-muted text-center d-none" id="info-ganti-<?= $gambar['id_gambar'] ?>"></small>
-                                                    <a href="#" class="btn btn-danger">Hapus</a>
+                                                    <a href="<?= base_url('admin/produk/hapus_produk/' . $gambar['id_gambar']) ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus gambar ini?')">Hapus</a>
                                                 </div>
                                             </div>
                                         </div>

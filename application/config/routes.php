@@ -65,3 +65,12 @@ $route['admin/produk'] = 'administrator/Produk_controller/index';
 $route['admin/produk/tambah'] = 'administrator/Produk_controller/tambah_produk';
 $route['admin/produk/ubah/(:num)'] = 'administrator/Produk_controller/ubah_produk/$1';
 $route['admin/produk/hapus/(:num)'] = 'administrator/Produk_controller/hapus_produk/$1';
+
+$route['admin/ekspedisi'] = 'administrator/Ekspedisi056_controller/index';
+$route['admin/ekspedisi/tambah'] = 'administrator/Ekspedisi056_controller/tambah_ekspedisi';
+$route['admin/ekspedisi/ubah/(:num)'] = 'administrator/Ekspedisi056_controller/ubah_ekspedisi/$1';
+$route['admin/ekspedisi/hapus/(:num)'] = 'administrator/Ekspedisi056_controller/hapus_ekspedisi/$1';
+
+$route['login'] = 'pelanggan_controller/login';
+$route['register'] = 'pelanggan_controller/register';
+$route['logout'] = 'pelanggan_controller/logout';
